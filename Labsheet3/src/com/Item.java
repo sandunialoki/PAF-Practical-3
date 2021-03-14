@@ -1,8 +1,8 @@
 package com;
-
 import java.sql.Connection;
 import java.sql.*;
 import java.sql.DriverManager;
+
 import java.sql.PreparedStatement;
 
 public class Item {
@@ -15,7 +15,7 @@ public class Item {
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver");
-			con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/student_management_system","root", "123sanduni");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/student_management_system","root", "123sanduni");
 			//For testing
 			System.out.print("Successfully connected");
 		}
@@ -40,7 +40,7 @@ public class Item {
 				return "Error while connecting to the database";
 			}
 			// create a prepared statement
-			String query = " insert into items (`itemID`,`itemCode`,`itemName`,`itemPrice`,`itemDesc`) values (?, ?, ?, ?, ?)";
+			String query = "insert into items (`itemID`,`itemCode`,`itemName`,`itemPrice`,`itemDesc`) values (?, ?, ?, ?, ?)";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			// binding values
 			preparedStmt.setInt(1, 0);
@@ -98,10 +98,10 @@ public class Item {
 				output += "<td><form method='post' action='Items.jsp'>"
 						+"<input name='itemID' type='hidden' value='" + itemID + "'>"
 						+ "<input name='action' value='select' type='hidden'>"
-						+ "<input name='btnUpdate' type='submit' value='Update'>"
+						+ "<input name='btnUpdate' type='submit' value='Update' class='btn btn-danger'>"
 						+ "</form></td>"
 						+ "<td><form method='post' action='Items.jsp'>"
-						+ "<input name='btnRemove' type='submit' value='Remove'>"
+						+ "<input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'>"
 						+ "<input name='action' value='delete' type='hidden'>"
 						+ "<input name='itemID' type='hidden' value='" + itemID + "'>" 
 						+ "</form></td></tr>";
@@ -117,6 +117,7 @@ public class Item {
 	}
 	return output;
 	}
+	
 	
 //Update function
 	public String updateItem(int ID,String code, String name, String price, String desc)
